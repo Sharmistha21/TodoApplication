@@ -1,4 +1,5 @@
 const mongoose=require('mongoose')
+const User = require('./userSchema')
 
 const taskSchema=new mongoose.Schema({
     name:{
@@ -11,27 +12,20 @@ const taskSchema=new mongoose.Schema({
     completed:{
         type:Boolean,
         default:false
+    },
+
+    User:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User',
+        required:true
     }
 })
 
-const userSchema=new mongoose.Schema({
-    username:{
-        type:String,
-        required:true
-    },
-    email:{
-        type:String,
-        required:true
-    },
-    password:{
-        type:String,
-        required: true
-    }
-})
 
-Task=mongoose.model('Task',taskSchema)
-User=mongoose.model('User',userSchema)
-module.exports={Task,User}
+
+const Task=mongoose.model('Task',taskSchema)
+
+module.exports=Task
 
 
 
